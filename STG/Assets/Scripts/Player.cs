@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
 	// Spaceshipコンポーネント
 	Spaceship spaceship;
-	
+
 	void Start ()
 	{
 		// Spaceshipコンポーネントを取得
@@ -48,5 +48,59 @@ public class Player : MonoBehaviour
 		
 		// 制限をかけた値をプレイヤーの位置とする
 		transform.position = pos;
+	}
+	
+	// ぶつかった瞬間に呼び出される
+	void OnTriggerEnter2D (Collider2D c)
+	{
+		// レイヤー名を取得
+		string layerName = LayerMask.LayerToName(c.gameObject.layer);
+
+		// レイヤー名がBullet (Enemy)の時は弾を削除
+		if( layerName == "Bullet(enemy)")
+		{
+			// 弾の削除
+			Destroy(c.gameObject);
+		}
+
+		// レイヤー名がBullet (Enemy)またはEnemyの場合はダメージ
+		if (layerName == "Bullet(enemy)" || layerName == "Enemy") {
+/*
+			// enemyBulletのTransformを取得
+			Transform enemyBulletTransform = c.transform.parent;
+
+			// Bulletコンポーネントを取得
+			Bullet bullet = enemyBulletTransform.GetComponent<Bullet>();
+
+			// ヒットポイントを減らす
+			spaceship.hp = spaceship.hp - bullet.power;
+
+			// EnemyのTransformを取得
+			Transform enemyTransform = c.transform.parent;
+
+			// Enemyコンポーネントを取得
+			Enemy enemy = enemyTransform.GetComponent<Enemy>();
+			
+			// ヒットポイントを減らす
+			spaceship.hp = spaceship.hp - enemy.power;
+			*/
+		}
+
+		// ヒットポイントが0以下であれば
+		if(spaceship.hp <= 0 )
+		{
+			// Managerコンポーネントをシーン内から探して取得し、GameOverメソッドを呼び出す
+			FindObjectOfType<Manager>().GameOver();
+
+			// 爆発する
+			spaceship.Explosion();
+		
+			// プレイヤーを削除
+			Destroy (gameObject);
+
+		}else{
+		// Damageトリガーをセット
+		spaceship.GetAnimator().SetTrigger("Damage");
+		}
 	}
 }

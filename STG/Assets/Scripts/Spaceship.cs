@@ -3,12 +3,15 @@
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class Spaceship : MonoBehaviour
 {
+	// ヒットポイント
+	public int hp;
+
 	// 移動スピード
 	public float speed;
 
 	// 移動スピード（バフ）
 	public float buffSpeed;
-	
+
 	// 弾を撃つ間隔
 	public float shotDelay;
 	

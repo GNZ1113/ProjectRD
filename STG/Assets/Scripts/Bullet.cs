@@ -11,11 +11,17 @@ public class Bullet : MonoBehaviour
 	// 攻撃力
 	public int power = 1;
 
+	// ホーミング精度
+	public float homingPower = 1;
+
+	// ホーミング頻度
+	public float homingTime = 1;
+
 	void Start ()
 	{
 		// ローカル座標のY軸方向に移動する
-		GetComponent<Rigidbody2D>().velocity = transform.up.normalized * speed;
-		
+		GetComponent<Rigidbody2D> ().velocity = transform.up.normalized * speed;
+
 		// lifeTime秒後に削除
 		Destroy (gameObject, lifeTime);
 	}

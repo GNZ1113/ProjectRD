@@ -404,6 +404,7 @@
      <Compile Include="Assets\PlayMaker\Actions\GetPosition.cs" />
      <Compile Include="Assets\PlayMaker\Actions\GetPreviousStateName.cs" />
      <Compile Include="Assets\PlayMaker\Actions\GetProperty.cs" />
+     <Compile Include="Assets\PlayMaker\Actions\GetPropertyCUSTOM.cs" />
      <Compile Include="Assets\PlayMaker\Actions\GetRandomChild.cs" />
      <Compile Include="Assets\PlayMaker\Actions\GetRandomObject.cs" />
      <Compile Include="Assets\PlayMaker\Actions\GetRaycastHitInfo.cs" />
