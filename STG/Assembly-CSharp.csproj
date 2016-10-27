@@ -98,6 +98,7 @@
      <Compile Include="Assets\PlayMaker\Actions\AnimateVariables\EaseFsmAction.cs" />
      <Compile Include="Assets\PlayMaker\Actions\AnimateVariables\EaseRect.cs" />
      <Compile Include="Assets\PlayMaker\Actions\AnimateVariables\EaseVector3.cs" />
+     <Compile Include="Assets\PlayMaker\Actions\AnimationFinishedEvent.cs" />
      <Compile Include="Assets\PlayMaker\Actions\AnimationSettings.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Animator\AnimatorCrossFade.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Animator\AnimatorInterruptMatchTarget.cs" />
@@ -824,6 +825,7 @@
      <Compile Include="Assets\Scripts\Explosion.cs" />
      <Compile Include="Assets\Scripts\Manager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\PlayerHit.cs" />
      <Compile Include="Assets\Scripts\Score.cs" />
      <Compile Include="Assets\Scripts\Spaceship.cs" />
      <Compile Include="Assets\iTween\iTween.cs" />

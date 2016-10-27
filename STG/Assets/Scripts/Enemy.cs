@@ -47,43 +47,4 @@ public class Enemy : MonoBehaviour
 	{
 		GetComponent<Rigidbody2D>().velocity = direction * spaceship.speed;
 	}
-
-	void OnTriggerEnter2D (Collider2D c)
-	{
-		// レイヤー名を取得
-		string layerName = LayerMask.LayerToName (c.gameObject.layer);
-		
-		// レイヤー名がBullet (Player)以外の時は何も行わない
-		if (layerName != "Bullet (Player)") return;
-
-		// PlayerBulletのTransformを取得
-		Transform playerBulletTransform = c.transform.parent;
-
-		// Bulletコンポーネントを取得
-		Bullet bullet =  playerBulletTransform.GetComponent<Bullet>();
-
-		// ヒットポイントを減らす
-		hp = hp - bullet.power;
-
-		// 弾の削除
-		Destroy(c.gameObject);
-
-		// ヒットポイントが0以下であれば
-		if(hp <= 0 )
-		{
-			// スコアコンポーネントを取得してポイントを追加
-			FindObjectOfType<Score>().AddPoint(point);
-
-			// 爆発
-			spaceship.Explosion ();
-			
-			// エネミーの削除
-			Destroy (gameObject);
-
-		}else{
-			// Damageトリガーをセット
-			spaceship.GetAnimator().SetTrigger("Damage");
-		
-		}
-	}
 }
