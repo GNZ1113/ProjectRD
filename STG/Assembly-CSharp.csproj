@@ -546,6 +546,7 @@
      <Compile Include="Assets\PlayMaker\Actions\Physics2D\SmoothLookAt2d.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Physics2D\Touch Object 2d Event.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Physics2D\Trigger2dEvent.cs" />
+     <Compile Include="Assets\PlayMaker\Actions\Physics2D\Trigger2dEventObj.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Physics2D\WakeAllRigidBodies2d.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Physics2D\WakeUp2d.cs" />
      <Compile Include="Assets\PlayMaker\Actions\PlayAnimation.cs" />
@@ -824,6 +825,7 @@
      <Compile Include="Assets\Scripts\Emitter.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\Explosion.cs" />
+     <Compile Include="Assets\Scripts\GameUIManager.cs" />
      <Compile Include="Assets\Scripts\Manager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerHit.cs" />

@@ -7,7 +7,8 @@ namespace HutongGames.PlayMaker.Actions
 {
     [ActionCategory(ActionCategory.Physics2D)]
     [Tooltip("Detect 2D trigger collisions between the Owner of this FSM and other Game Objects that have RigidBody2D components.\nNOTE: The system events, TRIGGER ENTER 2D, TRIGGER STAY 2D, and TRIGGER EXIT 2D are sent automatically on collisions triggers with any object. Use this action to filter collision triggers by Tag.")]
-    public class Trigger2dEvent : FsmStateAction
+    public class Trigger2dEventObj : FsmStateAction
+   
     {
         [Tooltip("The type of trigger event to detect.")]
         public Trigger2DType trigger;
@@ -21,8 +22,7 @@ namespace HutongGames.PlayMaker.Actions
 
         [UIHint(UIHint.Variable)]
         [Tooltip("Store the GameObject that collided with the Owner of this FSM.")]
-        public FsmGameObject storeCollider;
-
+        public FsmObject storeCollider;
 
         public override void Reset()
         {

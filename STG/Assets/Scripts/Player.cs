@@ -5,12 +5,14 @@ public class Player : MonoBehaviour
 {
 	// Spaceshipコンポーネント
 	Spaceship spaceship;
+    public float maxLife;
+    public float life;
 
-	void Start ()
+    void Start ()
 	{
 		// Spaceshipコンポーネントを取得
 		spaceship = GetComponent<Spaceship> ();
-	}
+    }
 
 	void Update()
 	{
@@ -50,57 +52,54 @@ public class Player : MonoBehaviour
 		transform.position = pos;
 	}
 	
-	// ぶつかった瞬間に呼び出される
-	void OnTriggerEnter2D (Collider2D c)
-	{
-		// レイヤー名を取得
-		string layerName = LayerMask.LayerToName(c.gameObject.layer);
+	//// ぶつかった瞬間に呼び出される
+	//void OnTriggerEnter2D (Collider2D c)
+	//{
+	//	// レイヤー名を取得
+	//	string layerName = LayerMask.LayerToName(c.gameObject.layer);
 
-		// レイヤー名がBullet (Enemy)の時は弾を削除
-		if( layerName == "Bullet(enemy)")
-		{
-			// 弾の削除
-			Destroy(c.gameObject);
-		}
+	//	// レイヤー名がBullet (Enemy)の時は弾を削除
+	//	if( layerName == "Bullet(enemy)")
+	//	{
+	//		// 弾の削除
+	//		Destroy(c.gameObject);
+	//	}
 
-		// レイヤー名がBullet (Enemy)またはEnemyの場合はダメージ
-		if (layerName == "Bullet(enemy)" || layerName == "Enemy") {
-/*
-			// enemyBulletのTransformを取得
-			Transform enemyBulletTransform = c.transform.parent;
+	//	// レイヤー名がBullet (Enemy)またはEnemyの場合はダメージ
+	//	if (layerName == "Bullet(enemy)" || layerName == "Enemy") {
 
-			// Bulletコンポーネントを取得
-			Bullet bullet = enemyBulletTransform.GetComponent<Bullet>();
+ //           //// enemyBulletのTransformを取得
+ //           //Transform enemyBulletTransform = c.transform.parent;
 
-			// ヒットポイントを減らす
-			spaceship.hp = spaceship.hp - bullet.power;
+ //           //// Bulletコンポーネントを取得
+ //           //Bullet bullet = enemyBulletTransform.GetComponent<Bullet>();
 
-			// EnemyのTransformを取得
-			Transform enemyTransform = c.transform.parent;
+ //           //// ヒットポイントを減らす
+ //           //spaceship.hp = spaceship.hp - bullet.power;
 
-			// Enemyコンポーネントを取得
-			Enemy enemy = enemyTransform.GetComponent<Enemy>();
+	//		// Enemyコンポーネントを取得
+	//		Enemy enemy = c.GetComponent<Enemy>();
 			
-			// ヒットポイントを減らす
-			spaceship.hp = spaceship.hp - enemy.power;
-			*/
-		}
+	//		// ヒットポイントを減らす
+	//		spaceship.hp = spaceship.hp - enemy.power;
+			
+	//	}
 
-		// ヒットポイントが0以下であれば
-		if(spaceship.hp <= 0 )
-		{
-			// Managerコンポーネントをシーン内から探して取得し、GameOverメソッドを呼び出す
-			FindObjectOfType<Manager>().GameOver();
+	//	// ヒットポイントが0以下であれば
+	//	if(spaceship.hp <= 0 )
+	//	{
+	//		// Managerコンポーネントをシーン内から探して取得し、GameOverメソッドを呼び出す
+	//		FindObjectOfType<Manager>().GameOver();
 
-			// 爆発する
-			spaceship.Explosion();
+	//		// 爆発する
+	//		spaceship.Explosion();
 		
-			// プレイヤーを削除
-			Destroy (gameObject);
+	//		// プレイヤーを削除
+	//		Destroy (gameObject);
 
-		}else{
-		// Damageトリガーをセット
-		spaceship.GetAnimator().SetTrigger("Damage");
-		}
-	}
+	//	}else{
+	//	// Damageトリガーをセット
+	//	spaceship.GetAnimator().SetTrigger("Damage");
+	//	}
+	//}
 }
