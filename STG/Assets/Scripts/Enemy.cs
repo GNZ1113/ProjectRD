@@ -4,10 +4,8 @@ using System.Collections;
 public class Enemy : MonoBehaviour
 {
 	// 激突時の攻撃力
-	public int power = 10;
+	public float power = 100;
 
-	// スコアのポイント
-	public int point = 100;
 
 
 	// Spaceshipコンポーネント
@@ -58,24 +56,18 @@ public class Enemy : MonoBehaviour
 		// レイヤー名がBullet (Player)以外の時は何も行わない
 		if (layerName != "Bullet(player)") return;
 
-		// PlayerBulletのTransformを取得
-		Transform playerBulletTransform = c.transform.parent;
-
 		// Bulletコンポーネントを取得
-		Bullet bullet =  playerBulletTransform.GetComponent<Bullet>();
+		Bullet bullet = c.GetComponent<Bullet>();
 
 		// ヒットポイントを減らす
-		spaceship.hp = spaceship.hp - bullet.power;
+		spaceship.life = spaceship.life - bullet.power;
 
-		// 弾の削除
-		Destroy(c.gameObject);
+		//// 弾の削除
+		//Destroy(c.gameObject);
 
 		// ヒットポイントが0以下であれば
-		if(spaceship.hp <= 0 )
+		if(spaceship.life <= 0 )
 		{
-			// スコアコンポーネントを取得してポイントを追加
-			FindObjectOfType<Score>().AddPoint(point);
-
 			// 爆発
 			spaceship.Explosion ();
 			

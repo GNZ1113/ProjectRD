@@ -6,19 +6,21 @@ public class GameUIManager : MonoBehaviour
 {
 
     private Player player;
+    private Spaceship spaceship;
 
     public Image lifeGage;
     public Image lifeRedGage;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        spaceship = GameObject.FindGameObjectWithTag("Player").GetComponent<Spaceship>();
         this.initParameter();
     }
 
     void Update()
     {
-        lifeGage.fillAmount = player.life / player.maxLife;
+        lifeGage.fillAmount = spaceship.life / spaceship.maxLife;
+        lifeRedGage.fillAmount = spaceship.redLife / spaceship.maxLife;
     }
 
     private void initParameter()

@@ -4,10 +4,12 @@
 public class Spaceship : MonoBehaviour
 {
 	// ヒットポイント
-	public int hp;
+    public float maxLife;
+    public float life;
+    public float redLife;
 
-	// 移動スピード
-	public float speed;
+    // 移動スピード
+    public float speed;
 
 	// 移動スピード（バフ）
 	public float buffSpeed;

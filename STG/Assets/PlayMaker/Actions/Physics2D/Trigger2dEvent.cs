@@ -23,7 +23,6 @@ namespace HutongGames.PlayMaker.Actions
         [Tooltip("Store the GameObject that collided with the Owner of this FSM.")]
         public FsmGameObject storeCollider;
 
-
         public override void Reset()
         {
             trigger = Trigger2DType.OnTriggerEnter2D;

@@ -7430,13 +7430,18 @@ public class iTween : MonoBehaviour{
 		
 		if (value < 1) return -0.5f * (a * Mathf.Pow(2, 10 * (value-=1)) * Mathf.Sin((value * d - s) * (2 * Mathf.PI) / p)) + start;
 		return a * Mathf.Pow(2, -10 * (value-=1)) * Mathf.Sin((value * d - s) * (2 * Mathf.PI) / p) * 0.5f + end + start;
-	}		
-	/* GFX47 MOD END */
-	
-    #endregion	
-	
-#region Deprecated and Renamed
-	/*
+	}
+
+    internal static void ValueTo(object gameObject, Hashtable hashtable)
+    {
+        throw new NotImplementedException();
+    }
+    /* GFX47 MOD END */
+
+    #endregion
+
+    #region Deprecated and Renamed
+    /*
 	public static void audioFrom(GameObject target, Hashtable args){Debug.LogError("iTween Error: audioFrom() has been renamed to AudioFrom().");}
 	public static void audioTo(GameObject target, Hashtable args){Debug.LogError("iTween Error: audioTo() has been renamed to AudioTo().");}
 	public static void colorFrom(GameObject target, Hashtable args){Debug.LogError("iTween Error: colorFrom() has been renamed to ColorFrom().");}

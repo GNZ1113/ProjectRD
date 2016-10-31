@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 	public float lifeTime = 1;
 
 	// 攻撃力
-	public int power = 1;
+	public float power = 1;
 
 	// ホーミング精度
 	public float homingPower = 1;
