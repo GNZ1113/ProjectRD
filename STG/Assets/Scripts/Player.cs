@@ -113,4 +113,67 @@ public class Player : MonoBehaviour
 
         }
     }
+
+    void OnTriggerStay2D(Collider2D c)
+    {
+        // レイヤー名を取得
+        string layerName = LayerMask.LayerToName(c.gameObject.layer);
+
+        //// レイヤー名がBullet (Enemy)の時は弾を削除
+        //if (layerName == "Bullet(enemy)")
+        //{
+        //    // 弾の削除
+        //    Destroy(c.gameObject);
+        //}
+
+        // レイヤー名がBullet (Enemy)の場合
+        if (layerName == "Bullet(enemy)")
+        {
+            // enemyBulletのTransformを取得
+            Transform enemyBulletTransform = c.transform.parent;
+
+            // Bulletコンポーネントを取得
+            Bullet bullet = enemyBulletTransform.GetComponent<Bullet>();
+
+            // ヒットポイントを減らす
+            spaceship.life = spaceship.life - bullet.power;
+
+            ////赤ゲージの制御
+            DG.Tweening.DOTween.To(() => spaceship.redLife, (n) => spaceship.redLife = n, spaceship.life, 2.0f);
+
+            spaceship.GetAnimator().SetTrigger("Damage");
+
+        }
+
+        // レイヤー名がEnemyの場合
+        if (layerName == "Enemy")
+        {
+
+            // Enemyコンポーネントを取得
+            Enemy enemy = c.GetComponent<Enemy>();
+
+            // ヒットポイントを減らす
+            spaceship.life = spaceship.life - enemy.power;
+
+            ////赤ゲージの制御
+            DG.Tweening.DOTween.To(() => spaceship.redLife, (n) => spaceship.redLife = n, spaceship.life, 2.0f);
+
+            spaceship.GetAnimator().SetTrigger("Damage");
+
+        }
+
+        // ヒットポイントが0以下であれば
+        if (spaceship.life <= 0)
+        {
+            //// Managerコンポーネントをシーン内から探して取得し、GameOverメソッドを呼び出す
+            //FindObjectOfType<Manager>().GameOver();
+
+            //// 爆発する
+            //spaceship.Explosion();
+
+            // プレイヤーを削除
+            Destroy(gameObject);
+
+        }
+    }
 }
