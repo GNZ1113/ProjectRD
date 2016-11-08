@@ -66,11 +66,9 @@ public class Player : MonoBehaviour
         // レイヤー名がBullet (Enemy)の場合
         if (layerName == "Bullet(enemy)")
         {
-            // enemyBulletのTransformを取得
-            Transform enemyBulletTransform = c.transform.parent;
-
+ 
             // Bulletコンポーネントを取得
-            Bullet bullet = enemyBulletTransform.GetComponent<Bullet>();
+            Bullet bullet = c.GetComponent<Bullet>();
 
             // ヒットポイントを減らす
             spaceship.life = spaceship.life - bullet.power;
@@ -129,11 +127,9 @@ public class Player : MonoBehaviour
         // レイヤー名がBullet (Enemy)の場合
         if (layerName == "Bullet(enemy)")
         {
-            // enemyBulletのTransformを取得
-            Transform enemyBulletTransform = c.transform.parent;
 
             // Bulletコンポーネントを取得
-            Bullet bullet = enemyBulletTransform.GetComponent<Bullet>();
+            Bullet bullet = c.GetComponent<Bullet>();
 
             // ヒットポイントを減らす
             spaceship.life = spaceship.life - bullet.power;
