@@ -63,6 +63,10 @@ public class Enemy : MonoBehaviour
         // ヒットポイントを減らす
         spaceship.life = spaceship.life - bullet.power;
 
+        ////赤ゲージの制御
+        DG.Tweening.DOTween.To(() => spaceship.redLife, (n) => spaceship.redLife = n, spaceship.life, 2.0f);
+
+
         //// 弾の削除
         //Destroy(c.gameObject);
 
@@ -99,11 +103,14 @@ public class Enemy : MonoBehaviour
 		// ヒットポイントを減らす
 		spaceship.life = spaceship.life - bullet.power;
 
-		//// 弾の削除
-		//Destroy(c.gameObject);
+        ////赤ゲージの制御
+        DG.Tweening.DOTween.To(() => spaceship.redLife, (n) => spaceship.redLife = n, spaceship.life, 2.0f);
 
-		// ヒットポイントが0以下であれば
-		if(spaceship.life <= 0 )
+        //// 弾の削除
+        //Destroy(c.gameObject);
+
+        // ヒットポイントが0以下であれば
+        if (spaceship.life <= 0 )
 		{
 			// 爆発
 			spaceship.Explosion ();

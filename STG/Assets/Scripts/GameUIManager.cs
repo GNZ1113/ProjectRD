@@ -5,7 +5,7 @@ using System.Collections;
 public class GameUIManager : MonoBehaviour
 {
 
-    private Player player;
+//    private Player player;
     private Spaceship spaceship;
 
     public Image lifeGage;

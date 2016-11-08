@@ -7,7 +7,7 @@ namespace HutongGames.PlayMaker.Actions
 {
     [ActionCategory(ActionCategory.Physics2D)]
     [Tooltip("Detect 2D trigger collisions between the Owner of this FSM and other Game Objects that have RigidBody2D components.\nNOTE: The system events, TRIGGER ENTER 2D, TRIGGER STAY 2D, and TRIGGER EXIT 2D are sent automatically on collisions triggers with any object. Use this action to filter collision triggers by Tag.")]
-    public class Trigger2dEventObj : FsmStateAction
+    public class Trigger2dEventCUSTOM : FsmStateAction
    
     {
         [Tooltip("The type of trigger event to detect.")]
@@ -15,19 +15,29 @@ namespace HutongGames.PlayMaker.Actions
 
         [UIHint(UIHint.Tag)]
         [Tooltip("Filter by Tag.")]
-        public FsmString collideTag;
+        public FsmString collideTag1;
+
+        [UIHint(UIHint.Tag)]
+        [Tooltip("Filter by Tag.")]
+        public FsmString collideTag2;
+
+        [UIHint(UIHint.Tag)]
+        [Tooltip("Filter by Tag.")]
+        public FsmString collideTag3;
 
         [Tooltip("Event to send if the trigger event is detected.")]
         public FsmEvent sendEvent;
 
         [UIHint(UIHint.Variable)]
         [Tooltip("Store the GameObject that collided with the Owner of this FSM.")]
-        public FsmObject storeCollider;
+        public FsmGameObject storeCollider;
 
         public override void Reset()
         {
             trigger = Trigger2DType.OnTriggerEnter2D;
-            collideTag = "Untagged";
+            collideTag1 = "Enemy";
+            collideTag2 = "Boss";
+            collideTag3 = "Untagged";
             sendEvent = null;
             storeCollider = null;
         }
@@ -57,7 +67,7 @@ namespace HutongGames.PlayMaker.Actions
         {
             if (trigger == Trigger2DType.OnTriggerEnter2D)
             {
-                if (other.gameObject.tag == collideTag.Value)
+                if (other.gameObject.tag == collideTag1.Value || other.gameObject.tag == collideTag2.Value || other.gameObject.tag == collideTag3.Value)
                 {
                     StoreCollisionInfo(other);
                     Fsm.Event(sendEvent);
@@ -69,7 +79,7 @@ namespace HutongGames.PlayMaker.Actions
         {
             if (trigger == Trigger2DType.OnTriggerStay2D)
             {
-                if (other.gameObject.tag == collideTag.Value)
+                if (other.gameObject.tag == collideTag1.Value || other.gameObject.tag == collideTag2.Value || other.gameObject.tag == collideTag3.Value)
                 {
                     StoreCollisionInfo(other);
                     Fsm.Event(sendEvent);
@@ -81,7 +91,7 @@ namespace HutongGames.PlayMaker.Actions
         {
             if (trigger == Trigger2DType.OnTriggerExit2D)
             {
-                if (other.gameObject.tag == collideTag.Value)
+                if (other.gameObject.tag == collideTag1.Value || other.gameObject.tag == collideTag2.Value || other.gameObject.tag == collideTag3.Value)
                 {
                     StoreCollisionInfo(other);
                     Fsm.Event(sendEvent);
