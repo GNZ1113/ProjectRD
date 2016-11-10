@@ -11,35 +11,12 @@ public class Enemy : MonoBehaviour
 	// Spaceshipコンポーネント
 	Spaceship spaceship;
 
-	IEnumerator Start ()
+	void Start ()
 	{
 		
 		// Spaceshipコンポーネントを取得
 		spaceship = GetComponent<Spaceship> ();
-				
-
-		// ローカル座標のY軸のマイナス方向に移動する
-		Move (transform.up * -1);
-		
-		// canShotがfalseの場合、ここでコルーチンを終了させる
-		if (spaceship.canShot == false) {
-			yield break;
-		}
-			
-		while (true) {
-			
-			// 子要素を全て取得する
-			for (int i = 0; i < transform.childCount; i++) {
-				
-				Transform shotPosition = transform.GetChild (i);
-				
-				// ShotPositionの位置/角度で弾を撃つ
-				spaceship.Shot (shotPosition);
-			}
-			
-			// shotDelay秒待つ
-			yield return new WaitForSeconds (spaceship.shotDelay);
-		}
+        
 	}
 
 	// 機体の移動
@@ -59,6 +36,13 @@ public class Enemy : MonoBehaviour
 
         // Bulletコンポーネントを取得
         Bullet bullet = c.GetComponent<Bullet>();
+
+        //弱点、耐性の処理
+        if(bullet.element == spaceship.resistElement)
+        { bullet.power = bullet.power * 0.5f; }
+
+        if (bullet.element == spaceship.weekElement)
+        { bullet.power = bullet.power * 2.0f; }
 
         // ヒットポイントを減らす
         spaceship.life = spaceship.life - bullet.power;
@@ -100,8 +84,15 @@ public class Enemy : MonoBehaviour
 		// Bulletコンポーネントを取得
 		Bullet bullet = c.GetComponent<Bullet>();
 
-		// ヒットポイントを減らす
-		spaceship.life = spaceship.life - bullet.power;
+        //弱点、耐性の処理
+        if (bullet.element == spaceship.resistElement)
+        { bullet.power = bullet.power * 0.5f; }
+
+        if (bullet.element == spaceship.weekElement)
+        { bullet.power = bullet.power * 2.0f; }
+
+        // ヒットポイントを減らす
+        spaceship.life = spaceship.life - bullet.power;
 
         ////赤ゲージの制御
         DG.Tweening.DOTween.To(() => spaceship.redLife, (n) => spaceship.redLife = n, spaceship.life, 2.0f);

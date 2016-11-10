@@ -4,9 +4,9 @@
 public class Spaceship : MonoBehaviour
 {
 	// ヒットポイント
-    public float maxLife;
-    public float life;
-    public float redLife;
+    public float maxLife = 10;
+    public float life = 10;
+    public float redLife = 10;
 
     // 移動スピード
     public float speed;
@@ -14,17 +14,16 @@ public class Spaceship : MonoBehaviour
 	// 移動スピード（バフ）
 	public float buffSpeed;
 
-	// 弾を撃つ間隔
-	public float shotDelay;
-	
-	// 弾のPrefab
-	public GameObject bullet;
-	
-	// 弾を撃つかどうか
-	public bool canShot;
-	
-	// 爆発のPrefab
-	public GameObject explosion;
+    //弱点属性
+    [SerializeField, TooltipAttribute("0:無  1:火  2:水  3:風  4:雷  5:光  6:闇")]
+    public int weekElement = -1;
+
+    //耐性属性
+    [SerializeField, TooltipAttribute("0:無  1:火  2:水  3:風  4:雷  5:光  6:闇")]
+    public int resistElement = -1;
+    
+    // 爆発のPrefab
+    public GameObject explosion;
 
 	// アニメーターコンポーネント
 	private Animator animator;
@@ -39,12 +38,6 @@ public class Spaceship : MonoBehaviour
 	public void Explosion ()
 	{
 		Instantiate (explosion, transform.position, transform.rotation);
-	}
-	
-	// 弾の作成
-	public void Shot (Transform origin)
-	{
-		Instantiate (bullet, origin.position, origin.rotation);
 	}
 
 	// アニメーターコンポーネントの取得
