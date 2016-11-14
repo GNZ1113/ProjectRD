@@ -31,10 +31,10 @@ public class Player : MonoBehaviour
 	void Move (Vector2 direction)
 	{
 		// 画面左下のワールド座標をビューポートから取得
-		Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0.02f, 0.025f));
+		Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0.045f, 0.05f));
 		
 		// 画面右上のワールド座標をビューポートから取得
-		Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(0.65f, 0.975f));
+		Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(0.625f, 0.95f));
 		
 		// プレイヤーの座標を取得
 		Vector2 pos = transform.position;
